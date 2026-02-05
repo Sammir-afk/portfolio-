@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Writer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --secondary: #1E293B;
+            --accent: #F97316;
+            --accent-light: #FDBA74;
+            --bg: #FAFAF9;
+            --text: #1E293B;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(253, 186, 116, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent);
+            display: block;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #CBD5E1;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #EA580C;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Stats */
+        .stats {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 4rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 3rem;
+            color: var(--accent-light);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .card-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: #F1F5F9;
+            color: var(--text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: calc(50% - 2rem);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            z-index: 2;
+        }
+
+        .timeline-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .timeline-description ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--primary);
+            color: white;
+        }
+
+        #contact .section-title {
+            color: white;
+        }
+
+        #contact .section-title::after {
+            background: var(--accent);
+        }
+
+        #contact .section-subtitle {
+            color: #CBD5E1;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-link:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-info p {
+            color: #CBD5E1;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0A0F1C;
+            color: #94A3B8;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: calc(100% - 2rem);
+                margin-left: 2rem;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>
+                Technical Writer
+                <span class="highlight">Portfolio</span>
+            </h1>
+            <p class="tagline">Transforming complex technical information into clear, user-centered documentation</p>
+            <div class="cta-group">
+                <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="stats fade-in">
+                <div class="stat">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Documents Created</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Users Served</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Support Ticket Reduction</div>
+                </div>
+            </div>
+
+            <div class="section-header fade-in">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Results-driven Technical Writer with 2 years of experience creating comprehensive documentation 
+                    for SaaS products, APIs, and enterprise software. I specialize in collaborating with cross-functional 
+                    teams to produce clear, user-centered content that enhances the developer and end-user experience.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Featured Work</h2>
+                <p class="section-subtitle">
+                    A selection of documentation projects showcasing my expertise in technical writing
+                </p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card fade-in">
+                    <div class="card-tag">API Documentation</div>
+                    <div class="card-image">{API}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">REST API Documentation</h3>
+                        <p class="card-description">
+                            Comprehensive API reference documentation for a cloud-based SaaS platform, including 
+                            endpoint descriptions, authentication guides, code examples, and error handling.
+                        </p>
+                        <div class="card-tech">
+                            <span class="tech-tag">Swagger/OpenAPI</span>
+                            <span class="tech-tag">Markdown</span>
+                            <span class="tech-tag">Postman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="card-tag">User Guide</div>
+                    <div class="card-image">{DOC}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Product User Guides</h3>
+                        <p class="card-description">
+                            End-to-end user manuals and how-to guides for enterprise software products, 
+                            complete with screenshots, diagrams, and step-by-step instructions.
+                        </p>
+                        <div class="card-tech">
+                            <span class="tech-tag">MadCap Flare</span>
+                            <span class="tech-tag">Snagit</span>
+                            <span class="tech-tag">Lucidchart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="card-tag">Knowledge Base</div>
+                    <div class="card-image">{KB}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Knowledge Base Articles</h3>
+                        <p class="card-description">
+                            Organized knowledge base with troubleshooting guides, FAQs, and best practices 
+                            that reduced support tickets by 35% and improved user self-service.
+                        </p>
+                        <div class="card-tech">
+                            <span class="tech-tag">Confluence</span>
+                            <span class="tech-tag">Notion</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="card-tag">Developer Portal</div>
+                    <div class="card-image">{DEV}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Developer Documentation Portal</h3>
+                        <p class="card-description">
+                            Built a complete developer portal using docs-as-code methodology with Git workflows, 
+                            including SDK guides, quickstart tutorials, and integration examples.
+                        </p>
+                        <div class="card-tech">
+                            <span class="tech-tag">MkDocs</span>
+                            <span class="tech-tag">Git/GitHub</span>
+                            <span class="tech-tag">Jekyll</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="card-tag">Release Notes</div>
+                    <div class="card-image">{REL}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Release Notes & Changelogs</h3>
+                        <p class="card-description">
+                            Regular release documentation highlighting new features, improvements, bug fixes, 
+                            and breaking changes for product updates and version releases.
+                        </p>
+                        <div class="card-tech">
+                            <span class="tech-tag">Markdown</span>
+                            <span class="tech-tag">JIRA</span>
+                            <span class="tech-tag">Confluence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="card-tag">Technical Specs</div>
+                    <div class="card-image">{SPEC}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Technical Specifications</h3>
+                        <p class="card-description">
+                            Detailed technical specification documents for software features and system 
+                            architecture, collaborating closely with engineering teams for accuracy.
+                        </p>
+                        <div class="card-tech">
+                            <span class="tech-tag">Google Docs</span>
+                            <span class="tech-tag">Visio</span>
+                            <span class="tech-tag">XML/DITA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background: #F8FAFC;">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">
+                    Technical proficiencies and tools I use to create exceptional documentation
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Documentation Types</h3>
+                    <ul class="skill-list">
+                        <li>API Documentation</li>
+                        <li>User Guides & Manuals</li>
+                        <li>Knowledge Base Articles</li>
+                        <li>Technical Specifications</li>
+                        <li>Release Notes</li>
+                        <li>SOPs & Training Materials</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>MadCap Flare & FrameMaker</li>
+                        <li>Confluence & Notion</li>
+                        <li>Git/GitHub</li>
+                        <li>Markdown & XML/DITA</li>
+                        <li>Swagger/OpenAPI</li>
+                        <li>MkDocs & Jekyll</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Core Competencies</h3>
+                    <ul class="skill-list">
+                        <li>Technical Writing</li>
+                        <li>Content Strategy</li>
+                        <li>Information Architecture</li>
+                        <li>Docs-as-Code</li>
+                        <li>Style Guide Development</li>
+                        <li>Agile/Scrum Methodology</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Cross-functional Collaboration</li>
+                        <li>Excellent Written Communication</li>
+                        <li>Detail-Oriented</li>
+                        <li>Self-Motivated</li>
+                        <li>Remote Work Excellence</li>
+                        <li>User Experience Focus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">
+                    My professional journey in technical writing
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2023 - Present</div>
+                        <h3 class="timeline-title">Technical Writer</h3>
+                        <div class="timeline-company">TechSolutions Inc.</div>
+                        <div class="timeline-description">
+                            <p>Creating comprehensive documentation for cloud-based SaaS products serving 50,000+ users.</p>
+                            <ul>
+                                <li>Author API documentation, SDK guides, and developer portals using Markdown</li>
+                                <li>Collaborate with developers, product managers, and designers daily</li>
+                                <li>Reduced support tickets by 35% through improved knowledge base articles</li>
+                                <li>Implement docs-as-code workflows using Git and static site generators</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 2022 - December 2022</div>
+                        <h3 class="timeline-title">Junior Technical Writer</h3>
+                        <div class="timeline-company">DataCorp Systems</div>
+                        <div class="timeline-description">
+                            <p>Produced installation guides, troubleshooting documentation, and FAQs for enterprise software.</p>
+                            <ul>
+                                <li>Standardized documentation templates across 200+ documents</li>
+                                <li>Collaborated with cross-functional teams to document technical specifications</li>
+                                <li>Managed content in Confluence and SharePoint</li>
+                                <li>Worked with QA teams to ensure technical accuracy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022</div>
+                        <h3 class="timeline-title">Bachelor of Arts in English</h3>
+                        <div class="timeline-company">State University</div>
+                        <div class="timeline-description">
+                            <p>Concentration: Professional Writing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">
+                    Interested in working together? Feel free to reach out through any of these channels.
+                </p>
+            </div>
+
+            <div class="contact-links fade-in">
+                <a href="mailto:your.email@example.com" class="contact-link">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p>your.email@example.com</p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+                    <div class="contact-icon">💻</div>
+                    <div class="contact-info">
+                        <h3>GitHub</h3>
+                        <p>@yourusername</p>
+                    </div>
+                </a>
+
+                <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-info">
+                        <h3>LinkedIn</h3>
+                        <p>Your Name</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Technical Writer Portfolio. View this project on <a href="https://github.com/yourusername/portfolio" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
